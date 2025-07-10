@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Registration</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .form-step {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-3xl bg-white rounded-xl shadow-lg p-6 md:p-10">
+        <h1 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-2">Visitor Registration Form</h1>
+        <p class="text-center text-gray-500 mb-8">Please complete all steps to proceed.</p>
+
+        <!-- Progress Bar -->
+        <div class="w-full mb-8">
+            <div class="flex items-center justify-between">
+                <div id="step-indicator-1" class="step-indicator flex-1 text-center">
+                    <div class="w-10 h-10 mx-auto bg-blue-600 text-white rounded-full text-lg flex items-center justify-center">1</div>
+                    <p class="text-xs text-gray-600 mt-2">START</p>
+                </div>
+                <div class="flex-1 h-1 bg-gray-200"></div>
+                <div id="step-indicator--2" class="step-indicator flex-1 text-center">
+                    <div class="w-10 h-10 mx-auto bg-gray-300 text-gray-500 rounded-full text-lg flex items-center justify-center">2</div>
+                    <p class="text-xs text-gray-500 mt-2">Details</p>
+                </div>
+                <div class="flex-1 h-1 bg-gray-200"></div>
+                <div id="step-indicator-3" class="step-indicator flex-1 text-center">
+                    <div class="w-10 h-10 mx-auto bg-gray-300 text-gray-500 rounded-full text-lg flex items-center justify-center">3</div>
+                    <p class="text-xs text-gray-500 mt-2">Health</p>
+                </div>
+                <div class="flex-1 h-1 bg-gray-200"></div>
+                <div id="step-indicator-4" class="step-indicator flex-1 text-center">
+                    <div class="w-10 h-10 mx-auto bg-gray-300 text-gray-500 rounded-full text-lg flex items-center justify-center">4</div>
+                    <p class="text-xs text-gray-500 mt-2">Medical</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <form id="visitorForm">
+            <!-- Step 1: Terms and Conditions -->
+ <div id="step-1" class="form-step">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">AUTHORIZATION FOR RELEASE OF MEDICAL INFORMATION</h2>
+
+    <!-- Box 1 -->
+    <div class="prose prose-sm max-w-none border border-gray-200 rounded-lg p-4 h-48 overflow-y-auto bg-gray-50 mb-4">
+        <h4 class="font-bold">PURPOSE</h4>
+        <p>This authorisation is to authorise the collection, release, use, storage, processing, amendment and transferring of medical, travel and other personal data for the purpose(s) of providing assistance to me, including arranging medical treatment, assessing and paying and/or obtaining payment for that treatment and assistance; running International SOS’ normal business and operations, and to comply with legal obligations and respond to emergencies such as those relating to public health (“Data Collection Purposes”).</p>
+        <h4 class="mt-6 font-bold">AUTHORIZATION OF DISCLOSURE</h4>
+        <p>I hereby authorise any organisation or person who has or may have information concerning me or my health to furnish PT. Alas Emas Abadi, including the International SOS Group of Companies and/or their respective representatives and/or agents (“International SOS”), who are acting on behalf of Freeport Indonesia, PT, with:</p>
+        <ul>
+            <li>(a) All relevant medical information pertaining to my medical history...</li>
+            <li>(b) All relevant information pertaining to my employment history;</li>
+            <li>(c) A medical certificate completed by any health provider which International SOS may require;</li>
+            <li>(d) Travel information including all itineraries, ticket information and proof of payment documentation.</li>
+        </ul>
+    </div>
+
+    <!-- Checkbox 1 -->
+    <div class="flex items-start mb-6">
+        <input id="termsCheckbox1" type="checkbox" class="mt-1 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        <label for="termsCheckbox1" class="ml-3 text-sm text-gray-900">
+            I understand that information related to sexually transmitted diseases, acquired immunodeficiency syndrome (AIDS), human immunodeficiency virus (HIV), genetic test results, behavioral or mental health services, and treatment for alcohol and drug abuse, shall not be disclosed unless: (i) required by law or (ii) I specifically authorise International SOS to make such disclosure by initialing here.
+        </label>
+    </div>
+
+    <!-- Box 2 -->
+    <div class="prose prose-sm max-w-none border border-gray-200 rounded-lg p-4 h-48 overflow-y-auto bg-gray-50 mb-4">
+        <h4 class="font-bold">CONSENT TO USE MEDICAL INFORMATION</h4>
+        <p>I consent to International SOS:</p>
+        <ul>
+            <li>(a) Collecting by using telephone recordings, electronic, paper or other means, processing and using my Personal Data for the Data Collection Purposes;</li>
+            <li>(b) Subject to local legal requirements (which may where applicable prevent disclosure to non-medical personnel and/or restrict release to medical professionals only) disclosing my Personal Data to entities of PT CKB</li>
+            <li>(c) Transferring my Personal Data outside Indonesia, to and from my doctors in my country of origin, and to and from the doctors where I am currently being treated and to other territories that may not have the same level of personal data protection.</li>
+        </ul>
+
+        <h4 class="mt-6 font-bold">AGREE AND ACCEPTED</h4>
+        <p>I understand and agree that:</p>
+        <ul>
+            <li>(a) A copy of International SOS’ Customer Personal Data Privacy Statement including information about my rights and instructions on how to file a complaint and access, correct, restrict access to or delete my Personal Data may be obtained by writing to: Director of Assistance, International SOS </li>
+            <li>(b) I have the right to refuse to sign this authorisation, and that if I do refuse, International SOS may be prevented from or limited in providing the services described above and may not be able to assist me.</li>
+            <li>(c) This authorisation expires one (1) year from the date of signature below.</li>
+            <li>(d) If I sign this authorisation, I will have the right to withdraw/ revoke it at any time, except to the extent that action has been taken prior to receipt of the withdrawal/ revocation. If I wish to withdraw/ revoke this authorisation</li>
+            <li>(e) This authorisation and my Personal Data will be kept no longer than is desirable for the purposes they were collected and, subject to applicable local law, will be destroyed in accordance with the periods set out in International SOS’ policy on data retention</li>
+            <li>(f) A copy, including photostat, electronic or fax copy of this authorisation, shall be considered as effective and valid as the original and I have specifically authorised its use as such.</li>
+        </ul>
+    </div>
+
+    <!-- Checkbox 2 -->
+    <div class="flex items-start mb-6">
+        <input id="termsCheckbox2" type="checkbox" class="mt-1 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        <label for="termsCheckbox2" class="ml-3 text-sm text-gray-900">
+            I have read and agree to all terms and conditions
+        </label>
+    </div>
+</div>
+
+
+    
+
+            <!-- Step 2: Visitor & Visit Details -->
+<div id="step-2" class="form-step hidden">
+    <h2 class="text-xl font-semibold text-gray-700 mb-6">Step 1: Visitor Identity</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Visitor Details -->
+        <div>
+            <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" name="fullName" id="fullName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="visitDate" class="block text-sm font-medium text-gray-700">Date</label>
+            <input type="date" name="visitDate" id="visitDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="idCardNumber" class="block text-sm font-medium text-gray-700">National ID Card Number</label>
+            <input type="text" name="idCardNumber" id="idCardNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+            <input type="date" name="dob" id="dob" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+            <input type="number" name="age" id="age" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div class="md:col-span-2">
+            <span class="block text-sm font-medium text-gray-700">Gender</span>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="gender" value="Female" required class="form-radio text-blue-600">
+                    <span class="ml-2">Female</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="gender" value="Male" required class="form-radio text-blue-600">
+                    <span class="ml-2">Male</span>
+                </label>
+            </div>
+        </div>
+        <div>
+            <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+            <input type="text" name="company" id="company" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
+            <input type="text" name="nationality" id="nationality" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+
+        <!-- Visit Details -->
+         <h2 class="text-xl font-semibold text-gray-700 mb-6">Step 2: Visit Details</h2>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <div>
+            <label for="startDate" class="block text-sm font-medium text-gray-700">Start Date of Visit</label>
+            <input type="date" name="startDate" id="startDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div>
+            <label for="endDate" class="block text-sm font-medium text-gray-700">End Date of Visit</label>
+            <input type="date" name="endDate" id="endDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div class="md:col-span-2">
+            <label for="futureVisit" class="block text-sm font-medium text-gray-700">Future Visit Planned This Calendar Year?</label>
+            <input type="text" name="futureVisit" id="futureVisit" placeholder="e.g., Yes / No" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+        <div class="md:col-span-2">
+            <span class="block text-sm font-medium text-gray-700">Visitor Type</span>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="visitorType" value="Business" required class="form-radio text-blue-600">
+                    <span class="ml-2">Business</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="visitorType" value="Non-Business" required class="form-radio text-blue-600">
+                    <span class="ml-2">Non-Business</span>
+                </label>
+            </div>
+        </div>
+        <div class="md:col-span-2">
+            <label for="purposeOfVisit" class="block text-sm font-medium text-gray-700">Purpose of Visit</label>
+            <textarea name="purposeOfVisit" id="purposeOfVisit" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required></textarea>
+        </div>
+        <div class="md:col-span-2">
+            <label for="safetySensitiveArea" class="block text-sm font-medium text-gray-700">Will you be entering safety sensitive areas?</label>
+            <input type="text" name="safetySensitiveArea" id="safetySensitiveArea" placeholder="e.g., Yes / No" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+        </div>
+    </div>
+</div>
+
+            
+          <!-- Step 3: Health Check -->
+<div id="step-3" class="form-step hidden">
+    <h2 class="text-xl font-semibold text-gray-700 mb-6">Step 3: Health Check Declaration</h2>
+    <div class="space-y-6">
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">1. Do you have type 1 or type 2 diabetes?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ1" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ1" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">2. Have you ever been told you have high blood sugar, 'pre diabetes' or similar?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ2" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ2" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">3. Do you have heart disease such as heart failure, ischaemic heart disease, heart attack, angina, coronary artery stenting?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ3" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ3" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">4. Do you have/have you ever been treated for or had high blood pressure?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ4" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ4" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">5. Have you ever had altitude sickness or suffered from ill effects when at altitude?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ5" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ5" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">6. Have you ever been diagnosed with a mental health disorder such as depression, anxiety, panic attacks?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ6" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ6" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">7. Do you have a history of respiratory disease such as asthma, chronic obstructive pulmonary disease?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ7" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ7" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">8. Do you have a history of recurrent respiratory tract infection e.g. pneumonia?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ8" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ8" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">9. Do you have chronic kidney disease?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ9" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ9" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">10. Do you have chronic liver disease such as hepatitis?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ10" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ10" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">11. Do you have chronic neurological condition such as Parkinson's disease, motor neurone disease, multiple sclerosis (MS)?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ11" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ11" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">12. Have you ever had a stroke or transient ischaemic attack?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ12" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ12" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">13. Do you have any mobility problems or use aids to mobilise?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ13" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ13" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">14. Do you have issues with your spleen such as sickle cell disease or have you had your spleen removed?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ14" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ14" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">15. Are you prescribed medication that affects your immune system such as immunotherapy, steroids, or chemotherapy?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ15" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ15" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">16. Are you pregnant?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ16" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ16" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+
+        <div class="p-4 border rounded-lg">
+            <p class="font-medium text-gray-800">17. Are you taking any medication?</p>
+            <div class="mt-2 space-x-6">
+                <label class="inline-flex items-center"><input type="radio" name="healthQ17" value="Yes" class="form-radio text-blue-600" required><span class="ml-2">Yes</span></label>
+                <label class="inline-flex items-center"><input type="radio" name="healthQ17" value="No" class="form-radio text-blue-600"><span class="ml-2">No</span></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <!-- Step 4: MCU & Measurements -->
+            <div id="step-4" class="form-step hidden">
+                 <h2 class="text-xl font-semibold text-gray-700 mb-6">Step 4: Medical History & Measurements</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label for="lastMcuDate" class="block text-sm font-medium text-gray-700">Last Medical Check-Up (MCU) Date</label>
+                        <input type="date" name="lastMcuDate" id="lastMcuDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+                    </div>
+                    <div>
+                        <label for="height" class="block text-sm font-medium text-gray-700">Height (cm)</label>
+                        <input type="number" name="height" id="height" placeholder="e.g., 170" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+                    </div>
+                    <div>
+                        <label for="weight" class="block text-sm font-medium text-gray-700">Weight (kg)</label>
+                        <input type="number" name="weight" id="weight" placeholder="e.g., 65" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+                    </div>
+                     <div class="md:col-span-2">
+                        <label for="bmi" class="block text-sm font-medium text-gray-700">Body Mass Index (BMI)</label>
+                        <input type="text" name="bmi" id="bmi" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 sm:text-sm" readonly>
+                        <p id="bmi-category" class="text-xs text-gray-500 mt-1"></p>
+                    </div>
+                 </div>
+            </div>
+            
+            <!-- Submission Status Message -->
+            <div id="statusMessage" class="hidden text-center p-4 mt-6 rounded-md"></div>
+
+        </form>
+        
+        <!-- Navigation Buttons -->
+        <div class="mt-8 pt-5 border-t border-gray-200">
+            <div class="flex justify-between">
+                <button id="prevBtn" type="button" class="bg-gray-200 text-gray-700 font-semibold py-2 px-6 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50">
+                    Previous
+                </button>
+                <button id="nextBtn" type="button" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Next
+                </button>
+                <button id="submitBtn" type="submit" form="visitorForm" class="hidden bg-green-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors">
+                    Submit Registration
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function () {
+        const scriptURL = "https://script.google.com/macros/s/AKfycbyrZecGu6r4EU5myOt-E685dpWvpTJqz_SJj7FZlKoZGpRtKwomV2NTksR4qOtB2RXe_g/exec"; 
+
+        const form = document.getElementById('visitorForm');
+        const steps = Array.from(document.querySelectorAll('.form-step'));
+        const stepIndicators = Array.from(document.querySelectorAll('.step-indicator'));
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        const termsCheckbox1 = document.getElementById('termsCheckbox1');
+        const termsCheckbox2 = document.getElementById('termsCheckbox2');
+
+        const heightInput = document.getElementById('height');
+        const weightInput = document.getElementById('weight');
+        const bmiInput = document.getElementById('bmi');
+        const bmiCategory = document.getElementById('bmi-category');
+
+        let currentStep = 0;
+
+        const showStep = (stepIndex) => {
+            steps.forEach((step, index) => {
+                step.classList.toggle('hidden', index !== stepIndex);
+                if (index !== stepIndex) {
+                    step.classList.add('opacity-0', 'transform', '-translate-x-4');
+                } else {
+                    step.classList.remove('opacity-0', 'transform', '-translate-x-4');
+                }
+            });
+            updateButtons();
+            updateProgressIndicator();
+        };
+
+        const updateButtons = () => {
+            prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-block';
+            nextBtn.style.display = currentStep === steps.length - 1 ? 'none' : 'inline-block';
+            submitBtn.style.display = currentStep === steps.length - 1 ? 'inline-block' : 'none';
+
+            if (currentStep === 0) {
+                nextBtn.disabled = !(termsCheckbox1.checked && termsCheckbox2.checked);
+            } else {
+                nextBtn.disabled = false;
+            }
+        };
+
+        const updateProgressIndicator = () => {
+            stepIndicators.forEach((indicator, index) => {
+                const div = indicator.querySelector('div');
+                const p = indicator.querySelector('p');
+                if (index < currentStep) {
+                    div.classList.add('bg-green-500', 'text-white');
+                    div.classList.remove('bg-blue-600', 'bg-gray-300', 'text-gray-500');
+                    p.classList.add('text-green-600');
+                    p.classList.remove('text-gray-500');
+                } else if (index === currentStep) {
+                    div.classList.add('bg-blue-600', 'text-white');
+                    div.classList.remove('bg-green-500', 'bg-gray-300', 'text-gray-500');
+                    p.classList.add('text-blue-600');
+                    p.classList.remove('text-gray-500');
+                } else {
+                    div.classList.add('bg-gray-300', 'text-gray-500');
+                    div.classList.remove('bg-green-500', 'bg-blue-600', 'text-white');
+                    p.classList.add('text-gray-500');
+                    p.classList.remove('text-green-600', 'text-blue-600');
+                }
+            });
+        };
+
+        const validateStep = (stepIndex) => {
+            const inputs = steps[stepIndex].querySelectorAll('input[required], textarea[required]');
+            for (let input of inputs) {
+                if (input.type === 'radio') {
+                    const radioGroup = document.getElementsByName(input.name);
+                    if (!Array.from(radioGroup).some(r => r.checked)) {
+                        alert(`Please answer all questions in Step ${stepIndex + 1}.`);
+                        return false;
+                    }
+                } else if (!input.value.trim()) {
+                    alert(`Please fill out all required fields in Step ${stepIndex + 1}.`);
+                    input.focus();
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        nextBtn.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentStep--;
+            showStep(currentStep);
+        });
+
+        const checkBothCheckboxes = () => {
+            if (currentStep === 0) {
+                nextBtn.disabled = !(termsCheckbox1.checked && termsCheckbox2.checked);
+            }
+        };
+
+        termsCheckbox1.addEventListener('change', checkBothCheckboxes);
+        termsCheckbox2.addEventListener('change', checkBothCheckboxes);
+
+        // BMI Calculation
+        const calculateBMI = () => {
+            const height = parseFloat(heightInput.value);
+            const weight = parseFloat(weightInput.value);
+
+            if (height > 0 && weight > 0) {
+                const heightInMeters = height / 100;
+                const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+                bmiInput.value = bmi;
+
+                let category = '';
+                if (bmi < 18.5) category = 'Underweight';
+                else if (bmi >= 18.5 && bmi <= 24.9) category = 'Normal weight';
+                else if (bmi >= 25 && bmi <= 29.9) category = 'Overweight';
+                else category = 'Obesity';
+                bmiCategory.textContent = `Category: ${category}`;
+            } else {
+                bmiInput.value = '';
+                bmiCategory.textContent = '';
+            }
+        };
+
+        heightInput.addEventListener('input', calculateBMI);
+        weightInput.addEventListener('input', calculateBMI);
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            if (!validateStep(currentStep)) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const formData = new URLSearchParams(new FormData(form));
+
+            fetch(scriptURL, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formData
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok.');
+    }
+    return response.json();
+})
+.then(data => {
+    if (data.result === 'success') {
+        statusMessage.textContent = 'Registration successful! Thank you.';
+        statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+        statusMessage.classList.add('bg-green-100', 'text-green-700');
+        form.reset();
+        currentStep = 0;
+        showStep(currentStep);
+    } else {
+        statusMessage.textContent = 'An error occurred. Please try again.';
+        statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+        statusMessage.classList.add('bg-red-100', 'text-red-700');
+    }
+})
+.catch(error => {
+    console.error("FETCH ERROR:", error);
+    statusMessage.textContent = 'Connection error. Please check your internet or server configuration.';
+    statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+    statusMessage.classList.add('bg-red-100', 'text-red-700');
+})
+.finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Registration';
+    setTimeout(() => statusMessage.classList.add('hidden'), 5000);
+});
+        });
+
+        showStep(currentStep);
+    });
+    </script>
+
+</body>
+</html>
