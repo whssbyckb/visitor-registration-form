@@ -542,36 +542,29 @@
             submitBtn.textContent = 'Submitting...';
 
             const formData = new FormData(form);
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            })
-//.then(response => {
-    //if (!response.ok) {
-        //throw new Error('Network response was not ok.');
-    //}
-    //return response.json();
-//})
-.then(() => {
-  statusMessage.textContent = 'Registration successful! Thank you.';
-  statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
-  statusMessage.classList.add('bg-green-100', 'text-green-700');
-  form.reset();
-  currentStep = 0;
-  showStep(currentStep);
+    fetch(scriptURL, {
+    method: 'POST',
+    body: formData,
+    mode: 'cors', // <-- Ubah dari 'no-cors' ke 'cors'
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+})
+.then(response => response.json())
+.then(data => {
+    console.log("Success:", data);
+    statusMessage.textContent = 'Registration successful! Thank you.';
+    statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+    statusMessage.classList.add('bg-green-100', 'text-green-700');
+    form.reset();
+    currentStep = 0;
+    showStep(currentStep);
 })
 .catch(error => {
     console.error("FETCH ERROR:", error);
     statusMessage.textContent = 'Connection error. Please check your internet or server configuration.';
     statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
     statusMessage.classList.add('bg-red-100', 'text-red-700');
-})
-.finally(() => {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Registration';
-    setTimeout(() => statusMessage.classList.add('hidden'), 5000);
 });
         });
 
